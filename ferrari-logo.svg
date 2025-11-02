@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="240" height="80" viewBox="0 0 240 80" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ferrari logo">
+  <!-- Simple, original-inspired emblem: a red rounded rectangle with a minimal car silhouette and text -->
+  <defs>
+    <linearGradient id="g" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#ffce00"/>
+      <stop offset="100%" stop-color="#ffdf57"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="240" height="80" rx="10" ry="10" fill="#b30000" />
+  <!-- simple car silhouette (stylized, geometric) -->
+  <g transform="translate(20,18) scale(0.9)" fill="#ffffff">
+    <rect x="0" y="18" width="110" height="18" rx="6" />
+    <rect x="8" y="6" width="40" height="20" rx="6" />
+    <circle cx="18" cy="44" r="6" />
+    <circle cx="92" cy="44" r="6" />
+  </g>
+  <!-- Text -->
+  <text x="140" y="48" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial" font-size="22" font-weight="700" fill="#ffffff">FERRARI</text>
+</svg>

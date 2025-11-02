@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500" role="img" aria-label="Luxury Vehicle">
+  <rect width="100%" height="100%" fill="#0f0f0f" rx="12" />
+  <g transform="translate(80,80)" fill="#fff">
+    <rect x="0" y="120" width="640" height="120" rx="14" fill="#2a2a2a" />
+    <rect x="80" y="40" width="440" height="100" rx="20" fill="#b30000" />
+    <circle cx="180" cy="260" r="32" fill="#111" />
+    <circle cx="520" cy="260" r="32" fill="#111" />
+  </g>
+  <text x="120" y="420" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue'" fill="#b3b3b3" font-size="26">Luxury Cars</text>
+</svg>

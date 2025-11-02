@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500" role="img" aria-label="Luxury House">
+  <defs>
+    <linearGradient id="g1" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#1DB954" />
+      <stop offset="100%" stop-color="#119a3b" />
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="#141414" rx="12" />
+  <!-- stylized house -->
+  <g transform="translate(120,70)" fill="#fff">
+    <polygon points="160,0 320,120 0,120" fill="url(#g1)" />
+    <rect x="40" y="120" width="240" height="140" rx="12" fill="#ffffff" opacity="0.95" />
+    <rect x="110" y="160" width="60" height="60" rx="8" fill="#1DB954" />
+    <rect x="180" y="160" width="40" height="60" rx="8" fill="#1DB954" />
+  </g>
+  <text x="420" y="320" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue'" fill="#b3b3b3" font-size="26">Luxury Villa</text>
+</svg>
