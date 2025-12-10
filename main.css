@@ -5,6 +5,7 @@
     --spotify-dark-gray: #282828;
     --spotify-light-gray: #B3B3B3;
     --spotify-white: #FFFFFF;
+    --cream-bg: #FFFDD0;
 }
 
 * {
@@ -12,12 +13,35 @@
     padding: 0;
     box-sizing: border-box;
     /* iOS / system font stack for native iOS look */
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
 body {
-    background-color: var(--spotify-black);
-    color: var(--spotify-white);
+    background: linear-gradient(135deg, var(--cream-bg) 60%, var(--spotify-green) 100%) fixed;
+    color: var(--spotify-black) !important;
+    min-height: 100vh;
+    /* offset for fixed navbar */
+    padding-top: 90px;
+    font-size: 1.1rem;
+    letter-spacing: 0.02em;
+}
+
+/* Add background images for extra uniqueness */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0; /* shorthand for top/right/bottom/left */
+    z-index: -1;
+    /* Simplified background image stack that prefers local assets and sensible fallbacks */
+    background-image:
+        linear-gradient(rgba(255,253,208,0.45), rgba(29,185,84,0.12)),
+        url('assets/modern-hotel.jpg'),
+        url('https://images.unsplash.com/photo-1501117716987-c8e2b0f1d2a3?auto=format&fit=crop&w=1400&q=80');
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-position: center center, center top, center top;
+    background-size: cover, cover, cover;
+    pointer-events: none;
+    filter: saturate(0.98) contrast(0.98);
 }
 
 /* Navigation */
@@ -56,29 +80,66 @@ nav {
     color: var(--spotify-green);
 }
 
+.navbar {
+    background: linear-gradient(90deg, rgba(29,185,84,0.95) 0%, rgba(255,253,208,0.95) 100%) !important;
+    box-shadow: 0 2px 8px rgba(25, 25, 25, 0.08);
+    height: 72px;
+}
+
+.navbar-brand img {
+    height: 48px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+}
+
+/* Brand text (fallback when no logo SVG is present) */
+.brand-text {
+    display: inline-block;
+    font-weight: 900;
+    font-size: 1.15rem;
+    color: var(--spotify-black);
+    letter-spacing: 0.08em;
+}
+
+.navbar-nav .nav-link {
+    color: var(--spotify-black) !important;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-right: 1rem;
+    letter-spacing: 0.05em;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--spotify-green) !important;
+    text-decoration: underline;
+}
+
 /* Hero Section */
 .hero {
-    height: 100vh;
-    background: linear-gradient(rgba(25, 20, 20, 0.7), rgba(25, 20, 20, 0.7)),
-                url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c');
-    background-size: cover;
-    background-position: center;
+    min-height: 70vh;
+    background: linear-gradient(120deg, var(--cream-bg) 60%, var(--spotify-green) 100%);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 0 2rem;
+    padding: 3.5rem 2rem 2rem 2rem;
+    border-radius: 0 0 28px 28px;
+    box-shadow: 0 8px 32px rgba(25, 25, 25, 0.08);
 }
 
 .hero h1 {
     font-size: 3.5rem;
     margin-bottom: 1rem;
+    color: var(--spotify-green);
+    font-weight: 900;
+    letter-spacing: 0.08em;
 }
 
 .hero p {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     margin-bottom: 2rem;
+    color: var(--spotify-black);
+    font-weight: 500;
 }
 
 .search-bar {
@@ -133,36 +194,82 @@ nav {
 }
 
 .card {
-    background-color: var(--spotify-dark-gray);
-    border-radius: 10px;
+    background: linear-gradient(120deg, var(--cream-bg) 60%, var(--spotify-dark-gray) 100%) !important;
+    border-radius: 18px !important;
+    color: var(--spotify-black) !important;
+    border: none;
+    box-shadow: 0 4px 24px rgba(25, 25, 25, 0.10);
     overflow: hidden;
-    transition: transform 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 8px 32px rgba(25, 25, 25, 0.18);
 }
 
-.card img {
+.card-img-top {
     width: 100%;
-    height: 250px; /* Increased height for better image display */
-    object-fit: cover;
-    object-position: center;
-    transition: transform 0.3s ease-in-out;
+    height: 220px;
+    background: var(--cream-bg) center/cover no-repeat;
+    padding: 0.5rem;
+    box-shadow: 0 2px 12px rgba(25, 25, 25, 0.10);
+    border-radius: 12px;
+    display: block;
 }
 
-.card:hover img {
-    transform: scale(1.05);
+@media (max-width: 768px) {
+    .card-img-top {
+        height: 120px;
+        padding: 0.5rem;
+        background-size: contain;
+    }
 }
 
-.card h3 {
-    padding: 1rem;
-    color: var(--spotify-green);
+/* Background images for cards (use local images when available, fall back to remote images) */
+.img-luxury { background-image: url('assets/luxury-house.jpg'), url('https://picsum.photos/id/1018/1200/800'); }
+.img-modern { background-image: url('assets/modern-apartment.jpg'), url('https://picsum.photos/id/1027/1200/800'); }
+/* Cozy House: use a warmer Unsplash fallback for higher quality */
+.img-house1 { background-image: url('assets/house-1.jpg'), url('https://images.unsplash.com/photo-1560184897-6bfbf6f7f0f6?auto=format&fit=crop&w=1200&q=80'); }
+.img-house2 { background-image: url('assets/house-1.jpg'), url('https://picsum.photos/id/1033/1200/800'); }
+.img-car { background-image: url('assets/ferrari-car.jpg'), url('https://picsum.photos/id/1071/1200/800'); }
+.img-jet { background-image: url('assets/private-jet.jpg'), url('https://picsum.photos/id/1062/1200/800'); }
+/* Brand Experience: use modern-hotel as a high-quality brand experience visual */
+.img-brand { background-image: url('assets/modern-hotel.jpg'), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80'); }
+
+/* Corporate event image */
+.img-corporate { background-image: url('assets/corporate-gathering.jpg'), url('https://picsum.photos/id/1011/1200/800'); }
+
+/* ensure background images cover the card area */
+.card-img-top { background-repeat: no-repeat; background-position: center; background-size: cover; }
+
+.card-title {
+    color: var(--spotify-green) !important;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
 }
 
-.card p {
-    padding: 0 1rem 1rem;
-    color: var(--spotify-light-gray);
+/* Heading font: Playfair Display for an elegant look */
+h1, h2, h3, .card-title {
+    font-family: 'Playfair Display', serif;
+}
+
+/* Booking modal styles */
+.modal-header {
+    background: linear-gradient(90deg, rgba(29,185,84,0.06), rgba(255,253,208,0.06));
+}
+.payment-fields {
+    display: none;
+}
+.payment-fields.active {
+    display: block;
+}
+
+.card-text {
+    color: var(--spotify-black);
+    font-size: 1.05rem;
+    margin-bottom: 1rem;
 }
 
 .btn {
@@ -179,6 +286,22 @@ nav {
     transition: background-color 0.3s;
 }
 
+.btn-success, .btn-info, .btn-warning, .btn-primary {
+    border-radius: 50px !important;
+    font-weight: 700;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 8px rgba(25, 25, 25, 0.08);
+}
+
+.btn-success {
+    background-color: var(--spotify-green) !important;
+    color: var(--spotify-white) !important;
+}
+
+.btn-success:hover {
+    background-color: #1ed760 !important;
+}
+
 .btn:hover {
     background-color: #1ed760;
 }
@@ -187,6 +310,13 @@ nav {
 footer {
     background-color: var(--spotify-dark-gray);
     padding: 3rem 5%;
+}
+
+footer.bg-dark {
+    background: linear-gradient(90deg, var(--spotify-dark-gray) 60%, var(--cream-bg) 100%) !important;
+    color: var(--spotify-black) !important;
+    border-radius: 40px 40px 0 0;
+    box-shadow: 0 -4px 24px rgba(25, 25, 25, 0.10);
 }
 
 .footer-content {
@@ -200,9 +330,19 @@ footer {
     margin-bottom: 1rem;
 }
 
+footer h4 {
+    color: var(--spotify-green) !important;
+    font-weight: 800;
+}
+
 .footer-section p {
     color: var(--spotify-light-gray);
     margin-bottom: 0.5rem;
+}
+
+footer p, .footer-section p {
+    color: var(--spotify-black) !important;
+    font-size: 1.05rem;
 }
 
 .social-links {
@@ -220,6 +360,16 @@ footer {
     color: var(--spotify-green);
 }
 
+.d-flex.gap-3 a {
+    color: var(--spotify-black) !important;
+    font-size: 1.5rem;
+    transition: color 0.3s;
+}
+
+.d-flex.gap-3 a:hover {
+    color: var(--spotify-green) !important;
+}
+
 .github-link {
     display: flex;
     align-items: center;
@@ -228,6 +378,8 @@ footer {
     padding: 0.5rem 1rem;
     border-radius: 25px;
     margin-left: 1rem;
+    color: var(--spotify-white);
+    font-weight: 700;
 }
 
 .github-link span {
@@ -240,17 +392,38 @@ footer {
     transition: all 0.3s ease;
 }
 
+/* Section and card overrides for Bootstrap */
+section {
+    background: none;
+    margin-bottom: 2rem;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
-    .nav-links {
-        display: none;
+    .navbar-nav .nav-link {
+        margin-right: 0;
+        font-size: 1rem;
     }
-    
     .hero h1 {
-        font-size: 2.5rem;
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        color: var(--spotify-green);
+        font-weight: 900;
+        letter-spacing: 0.08em;
     }
-    
-    .section {
-        padding: 3rem 5%;
+
+    /* Hero image small accent */
+    .hero-img {
+        object-fit: cover;
+        height: 120px;
+        width: 120px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    }
+        height: 120px;
+        padding: 0.5rem;
+        object-fit: contain;
+    }
+    section {
+        padding: 2rem 1rem;
     }
 }

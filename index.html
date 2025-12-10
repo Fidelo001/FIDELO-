@@ -4,113 +4,325 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luxury Accommodation & Events</title>
-    <link rel="stylesheet" href="css/main.css">
+    <meta name="description" content="Luxury accommodations, events and premium transport — curated experiences and bookings.">
+    <link rel="icon" href="assets/modern-hotel.jpg">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts: elegant heading + modern body -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <!-- Navigation -->
-    <nav>
-        <div class="logo">
-            <!-- Local SVG logo placed in assets/ for faster load and offline preview -->
-            <img src="assets/ferrari-logo.svg" alt="Ferrari Logo" class="logo-img">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <span class="brand-text">FIDELO</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#search">Search</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#accommodation">Accommodation</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#events">Events</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#transport">Transport</a></li>
+                </ul>
+            </div>
         </div>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#search">Search</a></li>
-            <li><a href="#accommodation">Accommodation</a></li>
-            <li><a href="#events">Events</a></li>
-            <li><a href="#transport">Transport</a></li>
-        </ul>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
-        <h1>Luxury Living & Premium Events</h1>
-        <p>Discover extraordinary accommodations and unforgettable events</p>
-        <div class="search-bar">
-            <input type="text" placeholder="Search for accommodations or events...">
-            <button><i class="fas fa-search"></i></button>
+    <section id="home" class="hero py-5 text-center" role="region" aria-label="Home">
+        <div class="container">
+            <div class="mb-4">
+                <img src="assets/modern-hotel.jpg" alt="Modern Hotel" width="120" class="mb-3 rounded-circle hero-img">
+            </div>
+            <h1 class="display-4">Luxury Living & Premium Events</h1>
+            <p class="lead">Discover extraordinary accommodations and unforgettable events</p>
+            <div class="search-bar w-75 w-md-50 mx-auto mb-4" role="search" aria-label="Site search">
+                <input type="search" class="form-control" placeholder="Search for accommodations or events..." aria-label="Search">
+                <button class="btn btn-primary" type="button" aria-label="Search"><i class="fas fa-search"></i></button>
+            </div>
         </div>
     </section>
 
     <!-- Accommodation Section -->
-    <section id="accommodation" class="section">
-        <h2>Premium Accommodations</h2>
-        <div class="card-container">
-            <div class="card">
-                <img src="assets/house-1.jpg" alt="Luxury House">
-                <h3>Luxury Villa</h3>
-                <p>Experience premium living with our exclusive accommodations</p>
-                <button class="btn">Book Now</button>
-            </div>
-            <div class="card">
-                <img src="assets/house-2.svg" alt="Modern House">
-                <h3>Modern Apartments</h3>
-                <p>Contemporary living spaces with premium amenities</p>
-                <button class="btn">Book Now</button>
+    <section id="accommodation" class="py-5">
+        <div class="container">
+            <h2 class="mb-4">Premium Accommodations</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-img-top img-luxury" role="img" aria-label="Luxury House"></div>
+                        <div class="card-body">
+                            <h3 class="card-title">Luxury Villa</h3>
+                            <p class="card-text">Experience premium living with our exclusive accommodations</p>
+                            <button class="btn btn-success book-btn" data-bs-toggle="modal" data-bs-target="#bookingModal">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-img-top img-modern" role="img" aria-label="Modern Apartment"></div>
+                        <div class="card-body">
+                            <h3 class="card-title">Modern Apartments</h3>
+                            <p class="card-text">Contemporary living spaces with premium amenities</p>
+                            <button class="btn btn-success book-btn" data-bs-toggle="modal" data-bs-target="#bookingModal">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-img-top img-house1" role="img" aria-label="Cozy House"></div>
+                        <div class="card-body">
+                            <h3 class="card-title">Cozy House</h3>
+                            <p class="card-text">Comfort and style for your stay</p>
+                            <button class="btn btn-success book-btn" data-bs-toggle="modal" data-bs-target="#bookingModal">Book Now</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Events Section -->
-    <section id="events" class="section">
-        <h2>Featured Events</h2>
-        <div class="card-container">
-            <div class="card">
-                <img src="assets/event-1.svg" alt="Event Venue">
-                <h3>Luxury Events</h3>
-                <p>Host your special occasions in our premium venues</p>
-                <button class="btn">Learn More</button>
-            </div>
-            <div class="card">
-                <img src="assets/event-2.svg" alt="Corporate Events">
-                <h3>Corporate Gatherings</h3>
-                <p>Perfect venues for your business events</p>
-                <button class="btn">Learn More</button>
+    <section id="events" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="mb-4">Featured Events</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-img-top img-luxury" role="img" aria-label="Event Venue - Luxury House"></div>
+                        <div class="card-body">
+                            <h3 class="card-title">Luxury Events</h3>
+                            <p class="card-text">Host your special occasions in our premium venues</p>
+                            <button class="btn btn-info">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-img-top img-corporate" role="img" aria-label="Event Venue - Corporate Gathering"></div>
+                        <div class="card-body">
+                            <h3 class="card-title">Corporate Gatherings</h3>
+                            <p class="card-text">Perfect venues for your business events</p>
+                            <button class="btn btn-info">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-img-top img-house2" role="img" aria-label="Event Venue - Celebration Room"></div>
+                        <div class="card-body">
+                            <h3 class="card-title">Special Celebrations</h3>
+                            <p class="card-text">Make memories at our unique events</p>
+                            <button class="btn btn-info">Learn More</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Transport Section -->
-    <section id="transport" class="section">
-        <h2>Premium Transport</h2>
-        <div class="card-container">
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1592198084033-aade902d1aae" alt="Ferrari Car">
-                <h3>Luxury Cars</h3>
-                <p>Travel in style with our premium fleet</p>
-                <button class="btn">Book a Ride</button>
-            </div>
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05" alt="Private Jet">
-                <h3>Private Jets</h3>
-                <p>Experience luxurious air travel with our exclusive fleet</p>
-                <button class="btn">Book Flight</button>
+    <section id="transport" class="py-5">
+        <div class="container">
+            <h2 class="mb-4">Premium Transport</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-img-top img-car" role="img" aria-label="Ferrari Car"></div>
+                        <div class="card-body">
+                            <h3 class="card-title">Luxury Cars</h3>
+                            <p class="card-text">Travel in style with our premium fleet</p>
+                            <button class="btn btn-warning book-btn" data-bs-toggle="modal" data-bs-target="#bookingModal">Book a Ride</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-img-top img-jet" role="img" aria-label="Private Jet"></div>
+                        <div class="card-body">
+                            <h3 class="card-title">Private Jets</h3>
+                            <p class="card-text">Experience luxurious air travel with our exclusive fleet</p>
+                            <button class="btn btn-warning book-btn" data-bs-toggle="modal" data-bs-target="#bookingModal">Book Flight</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-img-top img-brand" role="img" aria-label="Brand Experience"></div>
+                        <div class="card-body">
+                            <h3 class="card-title">Brand Experience</h3>
+                            <p class="card-text">Enjoy exclusive Ferrari brand events</p>
+                            <button class="btn btn-warning">Learn More</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>Contact Us</h4>
-                <p>Email: info@luxurylife.com</p>
-                <p>Phone: +1 234 567 890</p>
-            </div>
-            <div class="footer-section">
-                <h4>Follow Us</h4>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="https://github.com/YOUR_USERNAME" target="_blank" class="github-link">
-                        <i class="fab fa-github"></i>
-                        <span>View My Work</span>
-                    </a>
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Contact Us</h4>
+                    <p>Email: info@luxurylife.com</p>
+                    <p>Phone: +1 234 567 890</p>
+                </div>
+                <div class="col-md-6">
+                    <h4>Follow Us</h4>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-white"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="https://github.com/YOUR_USERNAME" target="_blank" class="text-white">
+                            <i class="fab fa-github"></i>
+                            <span>View My Work</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Booking modal (simple client-side demo) -->
+        <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="bookingModalLabel">Complete Your Booking</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="bookingForm">
+                            <div class="mb-3">
+                                <label for="guestName" class="form-label">Full name</label>
+                                <input type="text" class="form-control" id="guestName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="guestEmail" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="guestEmail" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Payment method</label>
+                                <div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="paymentMethod" id="payCard" value="card" checked>
+                                        <label class="form-check-label" for="payCard">Card</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="paymentMethod" id="payPaypal" value="paypal">
+                                        <label class="form-check-label" for="payPaypal">PayPal</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="payment-fields" id="cardFields">
+                                <div class="mb-3">
+                                    <label for="cardNumber" class="form-label">Card number</label>
+                                    <input type="text" class="form-control" id="cardNumber" placeholder="4242 4242 4242 4242">
+                                </div>
+                                <div class="row">
+                                    <div class="col-6 mb-3">
+                                        <label for="cardExp" class="form-label">Expiry</label>
+                                        <input type="text" class="form-control" id="cardExp" placeholder="MM/YY">
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <label for="cardCvc" class="form-label">CVC</label>
+                                        <input type="text" class="form-control" id="cardCvc" placeholder="CVC">
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="paypalNote" class="mb-3" style="display:none;">
+                                You'll be redirected to PayPal to complete payment (demo).
+                            </div>
+                            <div id="paypalButtons" class="mb-3" style="display:none;"></div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary">Confirm Booking</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PayPal SDK (sandbox/demo). Replace `client-id=sb` with your live client ID when ready. -->
+        <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD" data-sdk-integration-source="button-factory"></script>
+
+        <script>
+            // Toggle payment fields based on selection
+            (function(){
+                const payCard = document.getElementById('payCard');
+                const payPaypal = document.getElementById('payPaypal');
+                const cardFields = document.getElementById('cardFields');
+                const paypalNote = document.getElementById('paypalNote');
+                const paypalButtonsContainer = document.getElementById('paypalButtons');
+                let paypalRendered = false;
+
+                function updatePaymentFields(){
+                    if(payCard.checked){
+                        cardFields.classList.add('active');
+                        paypalNote.style.display = 'none';
+                        paypalButtonsContainer.style.display = 'none';
+                    } else {
+                        cardFields.classList.remove('active');
+                        paypalNote.style.display = 'block';
+                        paypalButtonsContainer.style.display = 'block';
+                        renderPaypalButtonsOnce();
+                    }
+                }
+
+                function renderPaypalButtonsOnce(){
+                    if(paypalRendered) return;
+                    if(typeof paypal === 'undefined' || !paypal.Buttons) return;
+                    paypal.Buttons({
+                        style: { layout: 'vertical', color: 'gold', shape: 'rect', label: 'pay' },
+                        createOrder: function(data, actions){
+                            // Demo order amount; in production calculate server-side
+                            return actions.order.create({
+                                purchase_units: [{ amount: { value: '99.00' }, description: 'Booking deposit (demo)' }]
+                            });
+                        },
+                        onApprove: function(data, actions){
+                            return actions.order.capture().then(function(details){
+                                const name = document.getElementById('guestName').value || details.payer.name.given_name || 'Guest';
+                                const modalEl = document.getElementById('bookingModal');
+                                const bsModal = bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl);
+                                bsModal.hide();
+                                alert('Payment completed by ' + name + '. Order ID: ' + details.id + ' (demo)');
+                            });
+                        },
+                        onError: function(err){
+                            console.error('PayPal error', err);
+                            alert('An error occurred with PayPal. Check the console for details.');
+                        }
+                    }).render('#paypalButtons');
+                    paypalRendered = true;
+                }
+
+                payCard.addEventListener('change', updatePaymentFields);
+                payPaypal.addEventListener('change', updatePaymentFields);
+                updatePaymentFields();
+
+                // Demo submit handler
+                document.getElementById('bookingForm').addEventListener('submit', function(e){
+                    e.preventDefault();
+                    const modalEl = document.getElementById('bookingModal');
+                    const bsModal = bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl);
+                    bsModal.hide();
+                    // Simple success feedback
+                    const name = document.getElementById('guestName').value || 'Guest';
+                    alert('Thank you, ' + name + '! Your booking request has been received (demo).');
+                });
+            })();
+        </script>
 </body>
 </html>
