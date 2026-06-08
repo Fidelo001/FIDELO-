@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .calculator-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .operation-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .operation-btn {
+            background: #f0f0f0;
+            color: #333;
+            border: 2px solid #e0e0e0;
+        }
+
+        .operation-btn:hover {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .operation-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .result-section {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .result-label {
+            color: #999;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        #result {
+            font-size: 32px;
+            font-weight: bold;
+            color: #667eea;
+            text-align: center;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .button-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .calculate-btn {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 16px;
+            padding: 14px;
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .calculate-btn:active {
+            transform: translateY(0);
+        }
+
+        .reset-btn {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .reset-btn:hover {
+            background: #c0392b;
+        }
+
+        .history {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .history h3 {
+            color: #333;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        #historyList {
+            max-height: 150px;
+            overflow-y: auto;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .history-item {
+            padding: 5px;
+            margin-bottom: 5px;
+            background: #f0f0f0;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 480px) {
+            .calculator-container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            #result {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator-container">
+        <h1>🧮 Calculator</h1>
+        
+        <div class="input-group">
+            <label for="num1">First Number</label>
+            <input type="number" id="num1" placeholder="Enter first number" step="0.01">
+        </div>
+
+        <div class="input-group">
+            <label for="num2">Second Number</label>
+            <input type="number" id="num2" placeholder="Enter second number" step="0.01">
+        </div>
+
+        <div class="input-group">
+            <label>Operation</label>
+            <div class="operation-group">
+                <button class="operation-btn" data-operation="add" title="Addition">➕ Add</button>
+                <button class="operation-btn" data-operation="subtract" title="Subtraction">➖ Subtract</button>
+                <button class="operation-btn" data-operation="multiply" title="Multiplication">✖️ Multiply</button>
+                <button class="operation-btn" data-operation="divide" title="Division">➗ Divide</button>
+                <button class="operation-btn" data-operation="power" title="Power">🔝 Power</button>
+                <button class="operation-btn" data-operation="square_root" title="Square Root">√ Square Root</button>
+            </div>
+        </div>
+
+        <div class="result-section">
+            <div>
+                <div class="result-label">Result</div>
+                <div id="result">-</div>
+            </div>
+        </div>
+
+        <div id="errorMessage" class="error-message"></div>
+
+        <div class="button-group">
+            <button class="calculate-btn" onclick="performCalculation()">Calculate</button>
+            <button class="reset-btn" onclick="resetCalculator()">Reset</button>
+        </div>
+
+        <div class="history">
+            <h3>📜 History</h3>
+            <div id="historyList"></div>
+        </div>
+    </div>
+
+    <script>
+        let selectedOperation = null;
+        let calculationHistory = [];
+
+        // Handle operation button clicks
+        document.querySelectorAll('.operation-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.operation-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                selectedOperation = this.dataset.operation;
+                clearError();
+            });
+        });
+
+        // Allow Enter key to calculate
+        document.querySelectorAll('input[type="number"]').forEach(input => {
+            input.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performCalculation();
+                }
+            });
+        });
+
+        function performCalculation() {
+            clearError();
+            
+            if (!selectedOperation) {
+                showError('Please select an operation');
+                return;
+            }
+
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+
+            if (isNaN(num1) && selectedOperation !== 'square_root') {
+                showError('Please enter valid numbers');
+                return;
+            }
+
+            // Send request to backend
+            fetch('{% url "calculator:calculate" %}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken')
+                },
+                body: JSON.stringify({
+                    operation: selectedOperation,
+                    num1: num1,
+                    num2: num2
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    showError(data.error);
+                } else {
+                    const result = parseFloat(data.result.toFixed(10));
+                    document.getElementById('result').textContent = result;
+                    addToHistory(num1, selectedOperation, num2, result);
+                }
+            })
+            .catch(error => {
+                showError('Error performing calculation');
+                console.error('Error:', error);
+            });
+        }
+
+        function resetCalculator() {
+            document.getElementById('num1').value = '';
+            document.getElementById('num2').value = '';
+            document.getElementById('result').textContent = '-';
+            document.querySelectorAll('.operation-btn').forEach(b => b.classList.remove('active'));
+            selectedOperation = null;
+            clearError();
+        }
+
+        function showError(message) {
+            document.getElementById('errorMessage').textContent = message;
+        }
+
+        function clearError() {
+            document.getElementById('errorMessage').textContent = '';
+        }
+
+        function addToHistory(num1, operation, num2, result) {
+            const operationSymbols = {
+                'add': '+',
+                'subtract': '-',
+                'multiply': '×',
+                'divide': '÷',
+                'power': '^',
+                'square_root': '√'
+            };
+
+            const historyEntry = `${num1} ${operationSymbols[operation]} ${num2 !== undefined ? num2 : ''} = ${result}`;
+            calculationHistory.unshift(historyEntry);
+            
+            if (calculationHistory.length > 10) {
+                calculationHistory.pop();
+            }
+
+            updateHistoryDisplay();
+        }
+
+        function updateHistoryDisplay() {
+            const historyList = document.getElementById('historyList');
+            historyList.innerHTML = calculationHistory.map((item, index) => 
+                `<div class="history-item">${index + 1}. ${item}</div>`
+            ).join('');
+        }
+
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+    </script>
+</body>
+</html>
